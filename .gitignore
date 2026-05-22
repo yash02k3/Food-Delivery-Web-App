@@ -1,9 +1,10 @@
 node_modules/
-
-.parcel-cache/
-
-yarn.lock
-
 dist/
-
+.parcel-cache/
 coverage/
+.env
+.env.local
+*.log
+.DS_Store
+client/dist/
+server/.env

@@ -1,68 +1,75 @@
-# Food-Delivery-Web-App
+# AgriLink
 
-This is a web application for food delivery. It uses the Swiggy public API to fetch data and generate responses for restaurant cards and menus.
+Premium construction material delivery platform — cement, steel, bricks, tiles & more delivered to your site.
 
-`Features :`
-1. Shimmer Ui
-2. Lazy Loading 
-3. Responsive
-4. Real Time Data Fetch From Api
-5. Working Search Bar
-6. Cart Using Redux Tool Kit
-7. Error Page
+## Stack
 
-# DISCLAIMER : 
+- **Frontend:** React, Vite, Redux Toolkit, Redux Persist, MUI, Framer Motion, Axios
+- **Backend:** Node.js, Express, MongoDB, JWT, Razorpay (test mode)
+- **Deploy:** Vercel (client) + Render (server)
 
-`If you are trying to access the live website kindly use this extension and enable it so that 3rd party API can run.`
-https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en 
-
-Video link : https://drive.google.com/file/d/1f_ZQ_rfPjixU_mAxJhqRKUb4sJMcRmP_/view?usp=sharing
-
-
-https://user-images.githubusercontent.com/78078088/231143634-14b7a842-b32c-4fd3-b8d5-088f4e43d1ff.mp4
-
-
-## 🔥 Clone this Repository
-You need to write the following commands on the terminal screen(in vscode) so that you can run this project locally.
+## Quick Start
 
 ```bash
-  git clone "https://github.com/abhaygoel14/Food-Delivery-Web-App.git"
-```
-Go to the project directory
+# 1. Install all dependencies
+npm install
+cd client && npm install
+cd ../server && npm install
 
-```bash
-  cd Food-Delivery-Web-App
-```
-Install dependencies
-```bash
-  npm install
-```
-Start the server
-```bash
-  npm run dev
-  yarn run dev
-```
-To create a build :
-```bash
-  npm run build
-  yarn run build
-```
-# Contributing :
-```
-Contributions are welcome! If you would like to contribute, please create a pull request.
+# 2. Configure server/.env
+PORT=5002
+MONGODB_URI=mongodb://127.0.0.1:27017/agrilink
+JWT_SECRET=agrilinksecret
+CLIENT_URL=http://localhost:5173
+
+# 3. Seed database (131 products)
+cd server && npm run seed
+
+# 4. Run both (from project root)
+cd .. && npm run dev
 ```
 
-# Credits :
-```
-This application uses the Swiggy public API.
-```
- # Please note that due to third-party API usage, there may be instances where images may not be displayed properly.
-#Performance Measure by Lighthouse:
+- Frontend: http://localhost:5173 (proxies `/api` → backend)
+- API: http://localhost:5002/api/health (auto-fallback if port busy)
 
-![image](https://user-images.githubusercontent.com/78078088/230981282-c3cb006a-d6ec-46b7-ae7d-785c2730161f.png)
+## Demo Accounts
 
+| Role | Email | Password |
+|------|-------|----------|
+| User | user@agrilink.in | password123 |
+| Admin | admin@agrilink.in | password123 |
+| Supplier | supplier@agrilink.in | password123 |
 
+## Coupons
 
-This application should now be running on `localhost`. If you want to Fork repository and want to run locally, follow this guidelines [Fork and Clone Github Repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+- `BUILD10` — 10% off above ₹1000
+- `FLAT200` — ₹200 off above ₹1500
+- `AGRI50` — ₹50 off above ₹500
 
+## Payment Options
 
+1. **Cash on Delivery** — pay on delivery
+2. **50% Advance** — half now, half on delivery (bulk orders)
+3. **Full Online** — Razorpay TEST mode (auto-simulated)
+
+## Features
+
+- JWT auth (login, signup, forgot password)
+- Dynamic addresses (geolocation + save Home/Work/Site)
+- 100+ products with brand variants
+- Cart, wishlist, coupons, GST invoice
+- Live order tracking
+- Supplier & Admin dashboards
+
+## Troubleshooting
+
+| Issue | Fix |
+|-------|-----|
+| Products not loading | Ensure `npm run dev` shows API on port 5000. Check `/api/health` |
+| Port in use | Set `PORT=5002` in server/.env and matching `VITE_PROXY_TARGET` in client |
+| Login fails | Run `npm run seed` in server folder |
+| CORS errors | `CLIENT_URL` in server/.env must match Vite URL |
+
+## Footer
+
+Developed by Tarun, Gagan, Akshay · 999999999 · India · global@gmail.com
