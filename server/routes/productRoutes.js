@@ -24,7 +24,7 @@ router.get('/featured', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const { category, search, featured, trending, supplier, brand, limit = 50, page = 1 } = req.query;
-    const query = {};
+    const query = { isApproved: { $ne: false } };
     if (category) query.category = category;
     if (featured === 'true') query.isFeatured = true;
     if (trending === 'true') query.isTrending = true;

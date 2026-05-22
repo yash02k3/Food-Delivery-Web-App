@@ -23,6 +23,8 @@ const userSchema = new mongoose.Schema(
     supplierId: { type: mongoose.Schema.Types.ObjectId, ref: 'Supplier' },
     addresses: [addressSchema],
     avatar: { type: String, default: '' },
+    isSuspended: { type: Boolean, default: false },
+    isBanned: { type: Boolean, default: false },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
   },

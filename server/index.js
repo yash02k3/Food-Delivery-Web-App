@@ -13,6 +13,8 @@ import paymentRoutes from './routes/paymentRoutes.js';
 import wishlistRoutes from './routes/wishlistRoutes.js';
 import couponRoutes from './routes/couponRoutes.js';
 import addressRoutes from './routes/addressRoutes.js';
+import supplierPanelRoutes from './routes/supplierPanelRoutes.js';
+import notificationRoutes from './routes/notificationRoutes.js';
 
 dotenv.config();
 
@@ -66,6 +68,8 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/wishlist', wishlistRoutes);
 app.use('/api/coupons', couponRoutes);
 app.use('/api/addresses', addressRoutes);
+app.use('/api/supplier-panel', supplierPanelRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

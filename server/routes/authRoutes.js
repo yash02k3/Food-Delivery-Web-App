@@ -48,6 +48,8 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ message: 'Email and password are required' });
     }
     const user = await User.findOne({ email: email.toLowerCase() });
+    if (user?.isBanned) return res.status(403).json({ message: 'Account banned' });
+    if (user?.isSuspended) return res.status(403).json({ message: 'Account suspended' });
     if (user && (await user.matchPassword(password))) {
       res.json(formatUser(user));
     } else {

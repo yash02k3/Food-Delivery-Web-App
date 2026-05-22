@@ -12,8 +12,8 @@ import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
 import OrderTracking from './pages/OrderTracking';
 import Profile from './pages/Profile';
-import SupplierDashboard from './pages/SupplierDashboard';
-import AdminDashboard from './pages/AdminDashboard';
+import SupplierPanel from './pages/SupplierPanel';
+import AdminPanel from './pages/AdminPanel';
 import SupplierDetails from './pages/SupplierDetails';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -41,9 +41,9 @@ export default function App() {
         <Route path="/orders/:id" element={<OrderTracking />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/supplier" element={<SupplierDashboard />} />
+        <Route path="/supplier" element={<SupplierPanel />} />
         <Route path="/supplier/:id" element={<SupplierDetails />} />
-        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin" element={<AdminPanel />} />
         <Route path="/terms" element={<StaticPage type="terms" />} />
         <Route path="/privacy" element={<StaticPage type="privacy" />} />
       </Routes>

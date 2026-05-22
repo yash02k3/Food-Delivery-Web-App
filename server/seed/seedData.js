@@ -4,6 +4,7 @@ import User from '../models/User.js';
 import Supplier from '../models/Supplier.js';
 import Product from '../models/Product.js';
 import Coupon from '../models/Coupon.js';
+import Banner from '../models/Banner.js';
 import { generateProducts, suppliersData, couponsData } from './productsCatalog.js';
 
 dotenv.config();
@@ -15,6 +16,7 @@ const seed = async () => {
     Supplier.deleteMany(),
     Product.deleteMany(),
     Coupon.deleteMany(),
+    Banner.deleteMany(),
   ]);
 
   const admin = await User.create({
@@ -53,7 +55,7 @@ const seed = async () => {
   const suppliers = [];
   for (let i = 0; i < suppliersData.length; i++) {
     const owner = i === 0 ? supplierUser : admin;
-    const s = await Supplier.create({ ...suppliersData[i], ownerId: owner._id });
+    const s = await Supplier.create({ ...suppliersData[i], ownerId: owner._id, status: 'approved', verifiedAt: new Date() });
     if (i === 0) {
       supplierUser.supplierId = s._id;
       await supplierUser.save();
@@ -65,6 +67,10 @@ const seed = async () => {
   const catalog = generateProducts(supplierIds);
   await Product.insertMany(catalog);
   await Coupon.insertMany(couponsData);
+  await Banner.insertMany([
+    { title: 'Build Faster', subtitle: 'Cement & Steel delivered in 30 mins', image: 'https://images.unsplash.com/photo-1486406146922-c627a92fd1ab?w=900&h=400&fit=crop', link: '/?category=Cement', order: 1 },
+    { title: 'Bulk Order Deals', subtitle: '50% advance on construction bulk orders', image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=900&h=400&fit=crop', link: '/categories', order: 2 },
+  ]);
 
   console.log(`\n✅ Seed complete!`);
   console.log(`   Products: ${catalog.length}`);

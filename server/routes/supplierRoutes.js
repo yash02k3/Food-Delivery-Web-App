@@ -6,7 +6,7 @@ import { protect, authorize } from '../middleware/auth.js';
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const suppliers = await Supplier.find({ isActive: true }).sort({ rating: -1 });
+  const suppliers = await Supplier.find({ isActive: true, status: 'approved' }).sort({ rating: -1 });
   res.json(suppliers);
 });
 

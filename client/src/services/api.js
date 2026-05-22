@@ -85,13 +85,59 @@ export const supplierAPI = {
   getDashboard: () => api.get('/suppliers/dashboard/me'),
 };
 
+export const supplierPanelAPI = {
+  getMe: () => api.get('/supplier-panel/me'),
+  updateProfile: (data) => api.put('/supplier-panel/profile', data),
+  getDashboard: () => api.get('/supplier-panel/dashboard'),
+  getProducts: (params) => api.get('/supplier-panel/products', { params }),
+  createProduct: (data) => api.post('/supplier-panel/products', data),
+  updateProduct: (id, data) => api.put(`/supplier-panel/products/${id}`, data),
+  deleteProduct: (id) => api.delete(`/supplier-panel/products/${id}`),
+  updateStock: (id, data) => api.patch(`/supplier-panel/products/${id}/stock`, data),
+  getCategories: () => api.get('/supplier-panel/categories'),
+  getOrders: () => api.get('/supplier-panel/orders'),
+  updateOrderStatus: (id, data) => api.put(`/supplier-panel/orders/${id}/status`, data),
+  getInvoice: (id) => api.get(`/supplier-panel/orders/${id}/invoice`),
+  getOffers: () => api.get('/supplier-panel/offers'),
+  createOffer: (data) => api.post('/supplier-panel/offers', data),
+  updateOffer: (id, data) => api.put(`/supplier-panel/offers/${id}`, data),
+  deleteOffer: (id) => api.delete(`/supplier-panel/offers/${id}`),
+  getReviews: () => api.get('/supplier-panel/reviews'),
+  updateDelivery: (data) => api.put('/supplier-panel/delivery', data),
+};
+
+export const notificationAPI = {
+  getAll: () => api.get('/notifications'),
+  markRead: (id) => api.put(`/notifications/${id}/read`),
+  markAllRead: () => api.put('/notifications/read-all'),
+};
+
 export const adminAPI = {
   getStats: () => api.get('/admin/stats'),
   getUsers: () => api.get('/admin/users'),
-  getOrders: () => api.get('/admin/orders'),
-  getSuppliers: () => api.get('/admin/suppliers'),
+  createUser: (data) => api.post('/admin/users', data),
+  updateUser: (id, data) => api.put(`/admin/users/${id}`, data),
+  deleteUser: (id) => api.delete(`/admin/users/${id}`),
   updateUserRole: (id, role) => api.put(`/admin/users/${id}/role`, { role }),
+  getOrders: () => api.get('/admin/orders'),
   updateOrder: (id, data) => api.put(`/admin/orders/${id}`, data),
+  getSuppliers: (params) => api.get('/admin/suppliers', { params }),
+  approveSupplier: (id) => api.put(`/admin/suppliers/${id}/approve`),
+  rejectSupplier: (id, reason) => api.put(`/admin/suppliers/${id}/reject`, { reason }),
+  suspendSupplier: (id) => api.put(`/admin/suppliers/${id}/suspend`),
+  getProducts: () => api.get('/admin/products'),
+  updateProduct: (id, data) => api.put(`/admin/products/${id}`, data),
+  deleteProduct: (id) => api.delete(`/admin/products/${id}`),
+  featureProduct: (id, isFeatured) => api.put(`/admin/products/${id}/feature`, { isFeatured }),
+  getCoupons: () => api.get('/admin/coupons'),
+  createCoupon: (data) => api.post('/admin/coupons', data),
+  deleteCoupon: (id) => api.delete(`/admin/coupons/${id}`),
+  getBanners: () => api.get('/admin/banners'),
+  createBanner: (data) => api.post('/admin/banners', data),
+  updateBanner: (id, data) => api.put(`/admin/banners/${id}`, data),
+  deleteBanner: (id) => api.delete(`/admin/banners/${id}`),
+  broadcastNotification: (data) => api.post('/admin/notifications/broadcast', data),
+  getCategories: () => api.get('/admin/categories'),
 };
 
 export const paymentAPI = {
